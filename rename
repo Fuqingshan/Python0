@@ -1,0 +1,36 @@
+#!/usr/bin/python3
+import os
+import re
+path = '/Volumes/Name/音乐'
+
+# 获取该目录下所有文件，存入列表中
+fileList = os.listdir(path)
+arr = []
+n = 0
+for i in fileList:
+    # 设置旧文件名（就是路径+文件名）
+    oldname = path + os.sep + fileList[n]  # os.sep添加系统分隔符
+    os.chdir(path)
+    # 设置新文件名，去掉前面的数字和.,去掉【六倍音质】
+    newName = re.sub(r'^\d+[.]*','',str(i))
+    newName = re.sub(r'[【六倍音质】]*','',newName)
+    os.renames(i, newName) # 用os模块中的rename方法对文件改名
+    print(oldname, '======>', newName)
+    n += 1
+
+#重命名之后再获取一遍文件来做删除，因为重命名之后文件可能有重复的
+fileList = os.listdir(path)
+for newName  in fileList:
+    # 去重，先取到第一个名字，看后面是否包含
+    first = newName.split('-', 1)[0]
+    print(arr)
+    t = 0
+    for i in arr:
+        if i in newName:
+            print('delete', newName)
+            os.remove(newName)
+            t = 1
+    if t == 0:
+        arr.append(first)
+
+new_dir = os.listdir(path)
