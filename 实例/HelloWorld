@@ -1,0 +1,4 @@
+#!/usr/bin/python3
+
+#输出hello world
+print("hello world")

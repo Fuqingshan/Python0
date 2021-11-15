@@ -1,0 +1,32 @@
+#!/usr/bin/python3
+
+def hw():
+    print("hello world")
+
+
+hw()
+
+#两个**会以字典的方式导入
+def dic(var1, **var2):
+    print(var1)
+    print(var2)
+
+print(dic(1,a=2,b=3))
+
+#如果单独出现星号 * 后的参数必须用关键字传入
+def f(a,b,*,c):
+    print(a+b+c)
+
+print(f(1,2,c=3))
+
+#匿名函数
+sum = lambda a,b: a+b
+
+print(sum(1,2))
+
+#返回值
+def r(a,b):
+    return a+b
+
+print(r(1,2))
+
